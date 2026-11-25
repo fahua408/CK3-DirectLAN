@@ -128,11 +128,11 @@ class AdminApp(tk.Tk):
 
         act_row = tk.Frame(patch_card, bg="#1E293B")
         act_row.pack(fill="x", pady=(4, 0))
-        self.lbl_patch_status = tk.Label(act_row, text="补丁状态: 检测中...", font=("Microsoft YaHei", 10, "bold"), fg="#F59E0B", bg="#1E293B")
+        self.lbl_patch_status = tk.Label(act_row, text="桥接状态: 检测中...", font=("Microsoft YaHei", 10, "bold"), fg="#F59E0B", bg="#1E293B")
         self.lbl_patch_status.pack(side="left", fill="x", expand=True)
 
-        ttk.Button(act_row, text="⚡ 安装虚拟局域网联机补丁", style="Success.TButton", command=self._install_patch).pack(side="right", padx=(6, 0))
-        ttk.Button(act_row, text="🔄 还原官方原版", style="Secondary.TButton", command=self._restore_patch).pack(side="right", padx=(6, 0))
+        ttk.Button(act_row, text="⚡ 启用虚拟局域网大厅桥接", style="Success.TButton", command=self._install_patch).pack(side="right", padx=(6, 0))
+        ttk.Button(act_row, text="🔄 还原官方默认模式", style="Secondary.TButton", command=self._restore_patch).pack(side="right", padx=(6, 0))
         ttk.Button(act_row, text="⚔️ 启动 CK3 建房", style="Primary.TButton", command=self._launch_game).pack(side="right")
 
         self.lbl_host_tunnel = tk.Label(
@@ -336,10 +336,10 @@ class AdminApp(tk.Tk):
 
     def _refresh_game_status(self):
         if not self.game_path or not patch_manager.verify_ck3_path(self.game_path):
-            self.lbl_patch_status.configure(text="补丁状态: 未找到游戏目录", fg="#EF4444")
+            self.lbl_patch_status.configure(text="桥接状态: 未找到游戏目录", fg="#EF4444")
             return
         status, desc = patch_manager.get_patch_status(self.game_path)
-        self.lbl_patch_status.configure(text=f"补丁状态: {desc}", fg="#10B981" if status == "PATCHED" else "#94A3B8")
+        self.lbl_patch_status.configure(text=f"桥接状态: {desc}", fg="#10B981" if status == "PATCHED" else "#94A3B8")
 
     def _install_patch(self):
         self._sync_endpoint_from_ui()
