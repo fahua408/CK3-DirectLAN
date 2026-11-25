@@ -1,0 +1,21 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Build artifacts
+build/
+build_tmp/
+dist/
+*.spec
+*.zip
+
+# Runtime local configs and logs
+client_config.json
+debug_logs/
+server/data/
+
+# Raw uncropped source media
+c4db1f4994e4a9939bc05d09aec7b3c0.mp4
+caff7f859b05db5f5e33054928796b54_720.png
+cb225081269da7d7b194384c2470df5b_720.jpg
