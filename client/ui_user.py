@@ -229,18 +229,18 @@ class UserApp(tk.Tk):
 
         btn_row = tk.Frame(patch_card, bg="#1A212E")
         btn_row.pack(fill="x", pady=(4, 6))
-        self.lbl_patch_status = tk.Label(btn_row, text="补丁状态: 检测中...", font=("Microsoft YaHei", 10, "bold"), fg="#F59E0B", bg="#1A212E")
+        self.lbl_patch_status = tk.Label(btn_row, text="桥接状态: 检测中...", font=("Microsoft YaHei", 10, "bold"), fg="#F59E0B", bg="#1A212E")
         self.lbl_patch_status.pack(side="left", fill="x", expand=True)
 
-        self.btn_install_patch = ttk.Button(btn_row, text="⚡ 安装虚拟局域网联机补丁", style="Success.TButton", command=self._install_patch)
+        self.btn_install_patch = ttk.Button(btn_row, text="⚡ 启用虚拟局域网大厅桥接", style="Success.TButton", command=self._install_patch)
         self.btn_install_patch.pack(side="right", padx=(6, 0))
 
-        self.btn_restore_patch = ttk.Button(btn_row, text="🔄 还原官方原版", style="Secondary.TButton", command=self._restore_patch)
+        self.btn_restore_patch = ttk.Button(btn_row, text="🔄 还原官方默认模式", style="Secondary.TButton", command=self._restore_patch)
         self.btn_restore_patch.pack(side="right")
 
         lbl_desc = tk.Label(
             patch_card,
-            text="💡 说明：安装补丁后无需登录 P 社账号！系统自动将上方的【专属联机昵称 + 唯一 SteamID64】绑定为你的游戏联机账号（适配至《白银与丝绸》全 37 款 DLC），并可随时无损还原原版。",
+            text="💡 说明：启用 DirectLAN 局域网桥接后无需登录外部中继账号！系统自动将上方的【专属联机昵称 + 唯一 SteamID64】绑定为你的联机身份（兼容 1.18+《白银与丝绸》联机协议），并可随时无损还原。",
             font=("Microsoft YaHei", 9),
             fg="#64748B",
             bg="#1A212E",
@@ -460,19 +460,19 @@ class UserApp(tk.Tk):
 
     def _refresh_game_status(self):
         if not self.game_path or not patch_manager.verify_ck3_path(self.game_path):
-            self.lbl_patch_status.configure(text="补丁状态: 未找到游戏目录", fg="#EF4444")
+            self.lbl_patch_status.configure(text="桥接状态: 未找到游戏目录", fg="#EF4444")
             self.btn_install_patch.configure(state="disabled")
             self.btn_restore_patch.configure(state="disabled")
             return
 
         status, desc = patch_manager.get_patch_status(self.game_path)
         if status == "PATCHED":
-            self.lbl_patch_status.configure(text=f"补丁状态: {desc}", fg="#10B981")
-            self.btn_install_patch.configure(text="⚡ 重新覆盖联机补丁", state="normal")
+            self.lbl_patch_status.configure(text=f"桥接状态: {desc}", fg="#10B981")
+            self.btn_install_patch.configure(text="⚡ 刷新局域网大厅桥接配置", state="normal")
             self.btn_restore_patch.configure(state="normal")
         else:
-            self.lbl_patch_status.configure(text=f"补丁状态: {desc}", fg="#94A3B8")
-            self.btn_install_patch.configure(text="⚡ 安装虚拟局域网联机补丁", state="normal")
+            self.lbl_patch_status.configure(text=f"桥接状态: {desc}", fg="#94A3B8")
+            self.btn_install_patch.configure(text="⚡ 启用虚拟局域网大厅桥接", state="normal")
             self.btn_restore_patch.configure(state="disabled")
 
     def _install_patch(self):
