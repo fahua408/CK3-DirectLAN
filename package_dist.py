@@ -72,6 +72,7 @@ def write_version_txt(target_folder: str, version: str):
 
 def build_one(src_file, name):
     print(f"[*] 正在通过 PyInstaller 打包: {name}.exe ...")
+    ico_file = os.path.join(PROJECT_ROOT, "assets", "directlan.ico")
     cmd = [
         sys.executable,
         "-m",
@@ -90,8 +91,10 @@ def build_one(src_file, name):
         BUILD_TMP,
         "--paths",
         CLIENT_DIR,
-        src_file,
     ]
+    if os.path.isfile(ico_file):
+        cmd.extend(["--icon", ico_file])
+    cmd.append(src_file)
     res = subprocess.run(cmd, cwd=PROJECT_ROOT)
     if res.returncode != 0:
         print(f"[-] 打包 {name} 失败！")
