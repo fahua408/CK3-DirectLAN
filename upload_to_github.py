@@ -46,6 +46,7 @@ UPLOAD_PATHS = [
     "server/start_windows_server.bat",
     "assets/multiplayer_ingame.png",
     "assets/multiplayer_5speed_sync.jpg",
+    "assets/directlan.ico",
     "bin/zero/priority.bat",
 ]
 
